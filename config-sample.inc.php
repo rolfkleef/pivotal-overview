@@ -51,4 +51,11 @@ STYLE;
  */
 $date_format = 'D j M';
 
+/*
+ * Icons to use for a project: use the Pivotal project id as index,
+ * to specify the location of an icon image
+ */
+$with_icons = false;
+$default_icon = 'pivotal.png';
+$icons[123456] = 'projectlogo.png';
 ?>

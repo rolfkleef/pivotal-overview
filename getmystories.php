@@ -87,7 +87,18 @@ if (isset($projects->project)) {
         }
 
         if ($show_emptyproject || $o_stories != '') {
-            echo "<p $o_iteration_title>" .
+            $icon = '';
+            if ($with_icons) {
+                $pid = (int) $project->id;
+                if (isset($icons) 
+                && isset($icons[$pid])) {
+                    $iconfile = $icons[$pid];
+                } else {
+                    $iconfile = $default_icon;
+                }
+                $icon = "<img src=\"{$iconfile}\"> ";
+            }
+            echo "<p $o_iteration_title>" . $icon .
                 "<a href='https://www.pivotaltracker.com/projects/{$project->id}' target='_blank'>" .
                 "<span class='project'>{$project->name}</span></a>{$o_iteration_end}</p>\n" .
                 $o_stories;
