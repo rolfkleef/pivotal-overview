@@ -56,6 +56,11 @@ if (isset($projects->project)) {
                                     if ($t!='') $t = "\n$t";
                                 }
 
+                                $l = '';
+                                if ($show_labels && isset($story->labels)) {
+                                    $l = "\n\n" . $story->labels;
+                                }
+
                                 $o = '';
                                 $o_class = '';
                                 if ($story->owned_by != $pivotal_user) {
@@ -66,8 +71,8 @@ if (isset($projects->project)) {
                                 }
 
                                 $alt = '';
-                                if ($d.$t != '') {
-                                    $alt = "title=\"" . htmlentities($d.$t) . "\"";
+                                if ($d.$t.$l != '') {
+                                    $alt = "title=\"" . htmlentities($d.$t.$l) . "\"";
                                 }
 
                                 $o_stories .= "<li $alt class='{$story->current_state}{$o_class}'>" .
@@ -90,7 +95,7 @@ if (isset($projects->project)) {
             $icon = '';
             if ($with_icons) {
                 $pid = (int) $project->id;
-                if (isset($icons) 
+                if (isset($icons)
                 && isset($icons[$pid])) {
                     $iconfile = $icons[$pid];
                 } else {
